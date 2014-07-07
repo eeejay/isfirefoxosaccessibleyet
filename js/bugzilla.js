@@ -2,6 +2,7 @@
 
 (function(window) {
 
+  var debug = window.location.href.indexOf('?debug') >= 0;
   var bugzillaUrl = 'https://api-dev.bugzilla.mozilla.org/latest/';
   var bugzillaExtUrl = 'https://bugzilla.mozilla.org/';
 
@@ -51,15 +52,28 @@
   }
 
   function getCount(args, callback) {
-    get(countUrl(args), function(response) {
-      callback(response.data);
-    });
+    if (debug) {
+      setTimeout(function () {
+        callback(4);
+      });
+    } else {
+      get(countUrl(args), function(response) {
+        callback(response.data);
+      });
+    }
   }
 
   function getList(args, callback) {
-    get(listUrl(args), function(response) {
-      callback(response.bugs);
-    });
+    if (debug) {
+      setTimeout(function () {
+        callback([
+          { id: '999999', summary: 'foo' }]);
+      });
+    } else {
+      get(listUrl(args), function(response) {
+        callback(response.bugs);
+      });
+    }
   }
 
   function getExternalUrl(args, prefix) {
