@@ -1,13 +1,10 @@
 body {
   font-family: "Open Sans Light","Droid Arabic Naskh","Mplus Fulah Light",sans-serif;
   color: #FFF;
-  background-position: 0 0, 0 0, 0 0;
-  background-color: #00539F;
-  background-image: url('./images/header-background.png'), url('./images/blueprint.png'), url('./images/mdn-header-gradient.png');
-  background-repeat: repeat, repeat, repeat-x;
+  margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6, .large, .component .header, .bugs-counts {
+h2, h3, h4, h5, h6, .large, .component .header, .bugs-counts {
   margin: 0;
   padding: 0;
   line-height: 100%;
@@ -20,8 +17,11 @@ h1, h2, h3, h4, h5, h6, .large, .component .header, .bugs-counts {
 }
 
 h1 {
+  font-weight: normal;
   font-size: 3rem;
   letter-spacing: -0.125rem;
+  margin: 0 auto;
+  text-align: center;
 }
 
 h2, .component .header {
@@ -45,9 +45,25 @@ h4 {
 
 main {
   position: relative;
-  margin: 0 auto;
-  padding: 5rem 0;
-  width: 70%;
+  margin: 0;
+  width: 100%;
+}
+
+.overview {
+  padding-top: 3rem;
+  margin-bottom: 3rem;
+  width: 100%;
+  height: calc(100vh - 6rem);
+  background-position: 0 0, 0 0, 0 0;
+  background-color: #00539F;
+  background-image: url('./images/header-background.png'), url('./images/blueprint.png'), url('./images/mdn-header-gradient.png');
+  background-repeat: repeat, repeat, repeat-x;
+  box-shadow: 0px -10px 5px 15px #333;
+}
+
+.overview > p {
+  text-align: center;
+  margin-top: 6rem;
 }
 
 .components {
