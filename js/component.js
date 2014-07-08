@@ -7,7 +7,7 @@
   window.component = function(name, container, options) {
     var component = {
       selectors: {
-        header: '.header',
+        heading: 'h2',
         bugCounts: '.bugs-counts',
         bugCountLabel: '.bug-count-label',
         total: '.total',
@@ -15,7 +15,7 @@
         resolved: '.resolved',
         p1: '.priority-1',
         p2: '.priority-2',
-        newBug: '.new-bug',
+        newBug: '.new-bug > a',
         bugsList: '.p1-bugs-list',
         goodFirstBugsList: '.good-first-bugs-list',
         comment: '.comment'
@@ -24,28 +24,20 @@
       counts: {},
       keys: options.keys,
       keywords: 'access',
-      html: '<header class="header"></header>' +
+      html: '<h2></h2>' +
         '<div class="component-section">' +
-          '<div class="bugs-counts" role="listbox">' +
-            '<div class="bug-count bug-count-label" aria-hidden="true">Bugs' +
-            '</div>' +
-            '<a role="option" class="bug-count total-bugs" hidden><span ' +
-              'class="total"></span> - Total</a>' +
-            '<a role="option" class="bug-count open-bugs" hidden><span ' +
-              'class="open"></span> - Open</a>' +
-            '<a role="option" class="bug-count resolved-bugs" hidden><span ' +
-              'class="resolved"></span> - Resolved</a>' +
-            '<a role="option" class="bug-count priority-1-bugs" hidden><span ' +
-              'class="priority-1"></span> - P1</a>' +
-            '<a role="option" class="bug-count priority-2-bugs" hidden><span ' +
-              'class="priority-2"></span> - P2</a>' +
-            '<a role="option" class="bug-count new-bug">New</a>' +
-          '</div>' +
           '<p class="comment" hidden></p>' +
-          '<div class="p1-bugs-list bugs-list" role="listbox" hidden></div>' +
-          '<div class="good-first-bugs-list bugs-list" role="listbox" hidden>' +
+          '<p class="score">Accessibility Score: <span>8</span></p>' +
+          '<div class="bugs"><p>There are ' +
+          '<a class="open-bugs"><span class="open"></span></a>' +
+          ' open bugs out of a total of ' +
+          '<a class="total-bugs"><span class="total"></span></a>' +
+          '</p>' +
+          '<div class="p1-bugs-list bugs-list" hidden></div>' +
+          '<div class="good-first-bugs-list bugs-list" hidden>' +
           '</div>' +
-        '</div>'
+          '<p class="new-bug"><a>File a new bug for <i>' + options.label + '</i></a>' +
+        '</div></div>'
     };
 
     function setElement(element, opts) {
@@ -140,24 +132,21 @@
         if (bugs.length === 0) {
           return;
         }
-        bugsList.setAttribute('aria-labelledby', labelId);
         bugsList.appendChild(makeElement({
-          tag: 'div',
+          tag: 'h3',
           id: labelId,
-          classes: ['bugs-list-item', 'bugs-list-label'],
-          attrs: {
-            'aria-hidden': true
-          },
           text: label
         }));
+        var ul = document.createElement('ul');
+        bugsList.appendChild(ul);
         bugs.forEach(function(bug) {
-          bugsList.appendChild(makeElement({
+          var li = document.createElement('li');
+          ul.appendChild(li);
+          li.appendChild(makeElement({
             tag: 'a',
             attrs: {
               href: bugzilla.bugUrl + bug.id,
-              role: 'option'
             },
-            classes: ['bugs-list-item'],
             text: bug.summary
           }));
         });
@@ -166,10 +155,7 @@
     };
 
     component.render = function render() {
-      component.elements.header.textContent = options.label;
-      component.elements.bugCounts.setAttribute('aria-labelledby',
-        component.name + '-bug-count');
-      component.elements.bugCountLabel.id = component.name + '-bug-count';
+      component.elements.heading.textContent = options.label;
       component.elements.newBug.setAttribute('href', bugzilla.getExternalUrl({
         blocked: 'gaiaa11y',
         cc: ['yzenevich@mozilla.com', 'marco.zehe@googlemail.com',

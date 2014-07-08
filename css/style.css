@@ -4,7 +4,7 @@ body {
   margin: 0;
 }
 
-h2, h3, h4, h5, h6, .large, .component .header, .bugs-counts {
+h2, h3, h4, h5, h6, .large, .bugs-counts {
   margin: 0;
   padding: 0;
   line-height: 100%;
@@ -24,13 +24,13 @@ h1 {
   text-align: center;
 }
 
-h2, .component .header {
+h2 {
   font-size: 2rem;
   letter-spacing: -0.063rem;
 }
 
-h3, .bugs-counts {
-  font-size: 1.75rem;
+h3 {
+  font-size: 1.5rem;
   letter-spacing: -0.031rem;
 }
 
@@ -66,22 +66,22 @@ main {
   margin-top: 6rem;
 }
 
-.components {
-  padding: 0;
-  color: #484848;
-  margin: 1rem 0;
-}
-
 .component {
+  border: 0.1rem solid;
+  border-left: 0.5rem solid;
   margin: 0 auto 1rem;
+  color: #484848;
 }
 
-.component .header {
-  width: 35%;
+.component h2 {
+  width: 100%;
   box-sizing: border-box;
   overflow: hidden;
   padding: 0.5rem 0 0.25rem 3rem;
-  border-left: 0.5rem solid #0095DD;
+}
+
+.component p {
+  margin: inherit 2rem;
 }
 
 .component a, .component a:link, .component a:visited {
@@ -92,6 +92,26 @@ main {
 .comment {
   padding: 1rem 0 1rem 0.25rem;
   border: 1px solid #F6F4EC;
+  width: calc(70% - 2rem);
+  float: left;
+}
+
+.score {
+  float: right;
+  width: calc(30% - 2rem);
+}
+
+.score > span {
+  display: block;
+  margin: auto;
+  text-align: center;
+  font-weight: 700;
+  font-size: 4rem;
+  color: #9A0;
+}
+
+.bugs {
+  clear: both;
 }
 
 .bugs-counts {
@@ -110,9 +130,9 @@ main {
   font-weight: normal;
 }
 
-.total-bugs, .open-bugs, .resolved-bugs, .priority-1-bugs, .priority-2-bugs, .new-bug {
-  border-width: 0.25rem;
-  border-style: solid;
+.total-bugs, .open-bugs {
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .total-bugs {
@@ -135,15 +155,17 @@ main {
   border-color: #C13832;
 }
 
-a.new-bug, a.new-bug:link, a.new-bug:visited {
+p.new-bug {
+  text-align: right;
+}
+
+.new-bug a, .new-bug a:link, .new-bug a:visited {
   color: #FFF;
   background-color: #0095DD;
-  border-color: #0095DD;
+  padding: 0.5rem;
 }
 
 .component .component-section {
-  border-left: 0.5rem solid #0095DD;
-  width: 85%;
   background: none repeat scroll 0 0 #FFF;
   margin: 0;
   padding: 1rem;
@@ -169,121 +191,115 @@ a.new-bug, a.new-bug:link, a.new-bug:visited {
   background-color: #F6F4EC;
 }
 
-.system .header{
+.system h2 {
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/system/style/icons/System_68.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.system .component-section, .system .header, .homescreen .component-section,
-.homescreen .header, .keyboard .component-section, .keyboard .header,
-.ftu .component-section, .ftu .header, .search .header,
-.search .component-section {
+.system, .homescreen, .keyboard, 
+.ftu, .search {
   border-color: #6D6F80;
 }
 
-.settings .header{
+.settings h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/settings/style/icons/settings_284.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.settings .component-section, .settings .header {
+.settings {
   border-color: #E0E6EB;
 }
 
-.contacts .header{
+.contacts h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/communications/contacts/style/icons/contacts_284.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.contacts .component-section, .contacts .header, .dialer .component-section,
-.dialer .header, .sms .component-section, .sms .header {
+.contacts, .dialer, .sms {
   border-color: #00ADAD;
 }
 
-.dialer .header{
+.dialer h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/communications/dialer/style/icons/dialer_284.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.sms .header{
+.sms h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/sms/style/icons/sms_284.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.homescreen .header{
+.homescreen h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/verticalhome/style/icons/vertical_68.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.keyboard .header, .ftu .header, .search .header{
+.keyboard h2, .ftu h2, .search h2{
   background-color: #F6F4EC;
   background-size: 2rem;
 }
 
-.music .header{
+.music h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/music/style/icons/music_284.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.music .component-section, .music .header, .video .component-section,
-.video .header, .camera .component-section, .camera .header,
-.gallery .component-section, .gallery .header {
+.music, .video, .camera, .gallery {
   border-color: #0E1214;
 }
 
-.gallery .header{
+.gallery h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/gallery/style/icons/gallery_284.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.video .header{
+.video h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/video/style/icons/video_284.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.calendar .header{
+.calendar h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/calendar/style/icons/calendar_284.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.email .header{
+.email h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/email/style/icons/email_284.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.calendar .component-section, .calendar .header, .email .component-section,
-.email .header {
+.calendar, .email {
   border-color: #F97C17;
 }
 
-.camera .header{
+.camera h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/camera/style/icons/camera_284.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.clock .header{
+.clock h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/clock/style/icons/clock_284.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.clock .component-section, .clock .header {
+.clock {
   border-color: #101111;
 }
 
-.costcontrol .header{
+.costcontrol h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/costcontrol/style/icons/costcontrol_284.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.costcontrol .component-section, .costcontrol .header {
+.costcontrol {
   border-color: #f4f4f4;
 }
 
-.fm .header{
+.fm h2{
   background: url(https://raw.githubusercontent.com/mozilla-b2g/gaia/master/apps/fm/style/icons/fm_284.png) no-repeat scroll 0.5rem 0.25rem #F6F4EC;
   background-size: 2rem;
 }
 
-.fm .component-section, .fm .header {
+.fm {
   border-color: #2F3337;
 }
